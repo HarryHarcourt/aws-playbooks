@@ -1,0 +1,22 @@
+---
+
+###
+## Playbook to create AWS Instances
+#
+
+- hosts: localhost
+  connection: local
+  gather_facts: False
+
+
+  tasks:
+
+    - name: Dump variables
+      include: include/debug_vars.yml
+      tags:
+          - debug_vars
+
+    - name: Create AWS Instances
+      include: include/aws_create.yml
+      tags:
+          - aws_create

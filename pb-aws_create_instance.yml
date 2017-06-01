@@ -1,0 +1,37 @@
+---
+
+###
+## Playbook to create AWS Instances
+#
+
+- hosts: localhost
+  connection: local
+  gather_facts: False
+
+
+  tasks:
+
+    - name: Dump variables
+      include: include/debug_vars.yml
+      tags:
+          - debug_vars
+
+    - name: Create AWS Security Group
+      include: include/aws_create_sg.yml
+      tags:
+          - aws_create_sg
+
+    - name: Create AWS Instances
+      include: include/aws_create.yml
+      tags:
+          - aws_create_instance
+
+    - name: Dump Variables again
+      include: include/debug_vars.yml
+      tags:
+          - debug_vars
+
+    - name: Deploy WAR file
+      include: include/webapp_tomcat_push.yml
+      tags:
+          - aws_deploy_warfile

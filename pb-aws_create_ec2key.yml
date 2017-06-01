@@ -1,0 +1,27 @@
+---
+
+###
+## Playbook to create AWS Security Group
+#
+
+- hosts: localhost
+  connection: local
+  gather_facts: False
+
+
+  tasks:
+
+    - name: Dump variables
+      include: include/debug_vars.yml
+      tags:
+          - debug_vars
+
+#    - name: Create AWS Security Group
+#      include: include/aws_ec2_key.yml
+#      tags:
+#          - aws_create_ec2_key
+
+    - name: Create AWS RSA Key
+      include: include/aws_ec2_rsa_key.yml
+      tags:
+          - aws_create_ec2_rsa_key

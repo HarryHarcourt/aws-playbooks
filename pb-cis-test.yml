@@ -1,0 +1,14 @@
+---
+- name: CIS Test Role
+  hosts: tag_purpose_cistesting
+  become: true
+  become_method: sudo
+  become_user: root
+  remote_user: ec2-user
+
+  vars: 
+    show_vari_dump: true
+    reboot: false
+
+  roles:
+    - Ansible-RHEL7-CIS-Benchmarks
